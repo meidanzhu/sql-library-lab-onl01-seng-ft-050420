@@ -33,11 +33,9 @@ end
 def select_series_title_with_most_human_characters
   #series.title character.species INNER JOIN series, author WHERE species = human limit 1
   "SELECT series.title
-  FROM characters
-  INNER JOIN series ON characters.series_id = series.id
-  GROUP BY Series.title, species
-  HAVING characters.species = 'human'
-  ORDER BY COUNT(species) DESC LIMIT 1 "
+  FROM series
+  INNER JOIN characters ON series.character_id = characters.id
+  WHERE characters.species = 'human' LIMIT 1 "
 end
 
 def select_character_names_and_number_of_books_they_are_in
